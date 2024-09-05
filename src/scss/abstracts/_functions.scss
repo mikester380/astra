@@ -1,0 +1,9 @@
+@function fluid-x($value) {
+  // @return calc($value * 1px);
+  @return min(calc($value * 1px), #{calc(var(--vdx) * $value)});
+}
+
+@function fluid-y($value) {
+  // @return calc($value * 1px);
+  @return min(calc($value * 1px), #{calc(var(--vdy) * $value)});
+}

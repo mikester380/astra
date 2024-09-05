@@ -1,0 +1,21 @@
+.c_3Dlink {
+  display: inline-block;
+  text-decoration: none;
+  color: $white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-image: linear-gradient(to bottom, $malachite, $bilbao);
+  box-shadow: inset 0px 4px 8px 0 $soapstone, inset 0px -4px 4px 0 $trans-black;
+  width: fit-content;
+
+  &--with-icon {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+
+    svg {
+      width: 20px;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import './fonts';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  // percentages of the viewport's width/height relative to the design's width/height
+  --vdx: calc(100vw / 1440);
+  --vdy: calc(100vh / 1024);
+
+  --border: 1px solid #{$log-cabin};
+  --border2x: 2px solid #{$log-cabin};
+}
+
+body {
+  font-family: 'inter';
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: $black;
+  color: $mecury;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'roc grotesk';
+  color: $white;
+}
+
+h2,
+h3 {
+  font-weight: 500;
+}
+
+.v-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+[data-hfa] {
+  visibility: hidden;
+}
+
+[data-splitting] .word,
+.o-clip {
+  overflow: clip;
+}
+
+.i-block {
+  display: inline-block;
+}

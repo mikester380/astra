@@ -1,0 +1,41 @@
+.shelf {
+  padding: fluid-y(32) fluid-x(72) 0 fluid-x(72);
+  display: flex;
+  align-items: center;
+
+  &__ls,
+  &__rs {
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+
+  &__rs {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: fluid-x(16);
+  }
+
+  &__logo {
+    svg {
+      width: 125px;
+    }
+  }
+
+  &__navHrefs {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: fluid-x(32);
+  }
+
+  &__navHref {
+    color: $silver-chalice;
+    font-weight: 400;
+
+    &--active {
+      color: $alabaster;
+      font-weight: 500;
+    }
+  }
+}

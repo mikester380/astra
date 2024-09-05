@@ -1,0 +1,49 @@
+.c_pill {
+  display: inline-block;
+  color: $white;
+  background-color: $heavy-metal;
+  border: var(--border);
+
+  &--with-icon {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+  }
+
+  &--va {
+    padding: 8px 12px;
+    border-radius: 12px;
+
+    //if the target element has this class "c_pill--va" and the class below, apply the styles that follow.
+    &[class*="c_pill--with-icon"] {
+      gap: 8px;
+      svg {
+        width: 16px;
+      }
+    }
+  }
+
+  &--vb {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+
+    //if the target element has this class "c_pill--vb" and the class below, apply the styles that follow.
+    &[class*="c_pill--with-icon"] {
+      gap: 4px;
+      svg {
+        width: 20px;
+      }
+    }
+  }
+
+  &--vc {
+    padding: 8px 12px;
+    border-radius: 18px;
+  }
+
+  &--va,
+  &--vc {
+    font-size: 0.75rem;
+  }
+}
