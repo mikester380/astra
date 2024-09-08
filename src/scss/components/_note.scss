@@ -7,11 +7,10 @@
   display: grid;
   place-items: center;
   background-color: $black;
-  display: none;
   padding: 0 30px;
 
-  &.active {
-    display: grid;
+  @media (min-width: 1000px) {
+    display: none;
   }
 
   &__summary {
