@@ -98,3 +98,9 @@ pricing_options.forEach((option, index) => {
     }
   })
 })
+
+const note = document.querySelector('.note')
+
+if (window.innerWidth < 1000) {
+  note.classList.add('active')
+}
