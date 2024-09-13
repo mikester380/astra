@@ -33,7 +33,6 @@ texts.forEach((text) => {
     start: 'bottom bottom',
     trigger: text,
     once: true,
-
     onEnter: () => {
       animation.start()
     },
@@ -55,7 +54,6 @@ values.forEach((value) => {
     start: 'bottom bottom',
     trigger: value,
     once: true,
-
     onEnter: () => {
       animation.start()
     },
@@ -69,7 +67,6 @@ pills.forEach((pill) => {
     start: 'bottom bottom',
     trigger: pill,
     once: true,
-
     onEnter: () => {
       animation.start()
     },

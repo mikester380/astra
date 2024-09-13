@@ -1,25 +1,8 @@
-import GSAPAnimation from './animation'
 import splitting from 'splitting'
 import gsap from 'gsap'
+import GSAPAnimation from './animation'
 
 export default class extends GSAPAnimation {
-  _create() {
-    this._lines.forEach((line, index) => {
-      const vars = {
-        duration: 0.55,
-        rotation: 0,
-        y: 0,
-      }
-
-      if (!index) {
-        this.tl.to(line, vars)
-        return
-      }
-
-      this.tl.to(line, vars, '>-0.45')
-    })
-  }
-
   _setup() {
     const [splitResult] = splitting({
       by: 'lines',
@@ -45,6 +28,23 @@ export default class extends GSAPAnimation {
       transformOrigin: '0% 50%',
       rotation: 5,
       y: '100%',
+    })
+  }
+
+  _create() {
+    this._lines.forEach((line, index) => {
+      const vars = {
+        duration: 0.55,
+        rotation: 0,
+        y: 0,
+      }
+
+      if (!index) {
+        this.tl.to(line, vars)
+        return
+      }
+
+      this.tl.to(line, vars, '>-0.45')
     })
   }
 

@@ -1,8 +1,8 @@
 import { checkIfWithTl } from '../utils/animations'
-import libGsap from 'gsap'
+import gsap from 'gsap'
 
 import GSAPAnimation from './animation'
-import TextIntro from './text'
+import TR0 from './text'
 
 class IntroHero extends GSAPAnimation {
   constructor() {
@@ -18,6 +18,15 @@ class IntroHero extends GSAPAnimation {
         icons_wrap: '.hero__clientsIcons',
         clients_s: '.hero__clientsSummary',
       },
+    })
+  }
+
+  _setup() {
+    this._dom.paths.forEach((path) => {
+      const length = path.getTotalLength()
+
+      path.style['stroke-dasharray'] = length
+      path.style['stroke-dashoffset'] = length * 0.4 - length
     })
   }
 
@@ -39,14 +48,14 @@ class IntroHero extends GSAPAnimation {
       })
       .add(
         ...checkIfWithTl({
-          animate: new TextIntro(this._dom.clients_s, false).tl,
+          animate: new TR0(this._dom.clients_s, false).tl,
           trigger: dom.clients_s,
           pos: '>-2',
         })
       )
       .add(
         ...checkIfWithTl({
-          animate: libGsap.from(dom.icons, {
+          animate: gsap.from(dom.icons, {
             yPercent: 100,
             duration: 0.33,
             stagger: 0.12,
@@ -56,15 +65,6 @@ class IntroHero extends GSAPAnimation {
           pos: '<',
         })
       )
-  }
-
-  _setup() {
-    this._dom.paths.forEach((path) => {
-      const length = path.getTotalLength()
-
-      path.style['stroke-dasharray'] = length
-      path.style['stroke-dashoffset'] = length * 0.4 - length
-    })
   }
 }
 

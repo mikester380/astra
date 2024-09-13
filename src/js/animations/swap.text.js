@@ -1,31 +1,36 @@
 import splitting from 'splitting'
-import libGsap from 'gsap'
+import gsap from 'gsap'
+import GsapAnimation from './animation'
 
-export default class {
-  constructor(target, value) {
-    this._target = target
-    this._value = value
-
-    this._timeline = libGsap.timeline({
-      paused: true,
-      defaults: {
-        stagger: 0.1,
+export default class extends GsapAnimation {
+  constructor(target, nextValue, paused = true) {
+    super({
+      pointers: {
+        text: target,
       },
+      paused,
     })
 
+    this._nextValue = nextValue
+  }
+
+  _setup() {
+    const { text } = this._dom
+
     const currValue = document.createElement('span')
-    currValue.textContent = this._target.textContent
+    currValue.textContent = text.textContent
 
     const nextValue = document.createElement('span')
-    nextValue.textContent = this._value
+    nextValue.textContent = this._nextValue
 
-    this._target.innerHTML = ''
-    this._target.append(nextValue, currValue)
+    text.innerHTML = ''
+    text.append(nextValue, currValue)
 
-    const valueSplits = []
+    this._valueSplits = []
 
+    //split each value
     ;[currValue, nextValue].forEach((value) => {
-      valueSplits.push(
+      this._valueSplits.push(
         splitting({
           target: value,
           by: 'chars',
@@ -33,7 +38,7 @@ export default class {
       )
     })
 
-    const chars = valueSplits.map((v) => v.chars).flat()
+    const chars = this._valueSplits.map((v) => v.chars).flat()
 
     chars.forEach((char) => {
       const w = document.createElement('span')
@@ -43,32 +48,35 @@ export default class {
       w.appendChild(char)
     })
 
-    libGsap.set(nextValue, {
+    gsap.set(nextValue, {
       position: 'absolute',
     })
 
-    libGsap.set(valueSplits[1].chars, {
+    const [, split2] = this._valueSplits
+
+    gsap.set(split2.chars, {
       y: '100%',
     })
+  }
 
-    this._timeline
-      .to(valueSplits[0].chars, {
+  _create() {
+    const { text } = this._dom
+    const [split1, split2] = this._valueSplits
+
+    this.tl
+      .to(split1.chars, {
         y: '-100%',
       })
       .to(
-        valueSplits[1].chars,
+        split2.chars,
         {
           y: 0,
         },
         '<'
       )
       .eventCallback('onComplete', () => {
-        this._target.innerHTML = ''
-        this._target.textContent = value
+        text.innerHTML = ''
+        text.textContent = this._nextValue
       })
-  }
-
-  swap() {
-    this._timeline.play()
   }
 }

@@ -13,6 +13,12 @@ export default class extends GSAPAnimation {
     })
   }
 
+  _setup() {
+    gsap.set(this._dom.pill, {
+      clipPath: 'polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%)',
+    })
+  }
+
   _create() {
     const { pill } = this._dom
     const text = new TR0(pill, false)
@@ -24,11 +30,5 @@ export default class extends GSAPAnimation {
         duration: 0.65,
       })
       .add(text.tl, '>-0.4')
-  }
-
-  _setup() {
-    gsap.set(this._dom.pill, {
-      clipPath: 'polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%)',
-    })
   }
 }

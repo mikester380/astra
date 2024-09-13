@@ -2,10 +2,6 @@ import GSAPAnimation from './animation'
 import TA0 from './text'
 
 export default class extends GSAPAnimation {
-  constructor(elements) {
-    super({ pointers: elements })
-  }
-
   _create() {
     const { title, summary, icon } = this._dom
 
@@ -20,5 +16,11 @@ export default class extends GSAPAnimation {
       })
       .add(summaryReveal.tl, '>-0.1')
       .add(titleReveal.tl, '<')
+  }
+
+  constructor(elements) {
+    super({
+      pointers: elements,
+    })
   }
 }
