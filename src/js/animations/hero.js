@@ -48,7 +48,7 @@ class IntroHero extends GSAPAnimation {
       })
       .add(
         ...checkIfWithTl({
-          animate: new TR0(this._dom.clients_s, false).tl,
+          animate: new TR0(dom.clients_s, false).tl,
           trigger: dom.clients_s,
           pos: '>-2',
         })
